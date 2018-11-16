@@ -4,6 +4,7 @@
   "description": "Back End for Galvanize Movie Crud Project",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "knex": "knex",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,8 +20,12 @@
   },
   "homepage": "https://github.com/chriskistner/chrisk-movie-crud-back-end#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^6.1.0",
+    "express": "^4.16.4",
     "knex": "^0.15.2",
+    "morgan": "^1.9.1",
     "pg": "^7.6.1"
   }
 }

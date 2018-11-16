@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
         table.integer('released').defaultTo(1900)
         table.string('director')
         table.integer('rating').notNullable()
+        table.text('poster')
         table.timestamps(true, true)
     })
 };

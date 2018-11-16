@@ -9,5 +9,9 @@ exports.seed = function(knex, Promise) {
         {id: 2, first_name: 'Jack', last_name:"Black"},
         {id: 3, first_name: 'Jackie', last_name:"Chan"}
       ]);
-    });
+    }).then(() => {
+      return knex.raw(
+        `SELECT setval('actors_id_seq', (SELECT MAX(id) FROM actors));`
+      );
+    })
 };
