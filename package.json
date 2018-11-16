@@ -1,0 +1,26 @@
+{
+  "name": "chrisk-movie-crud-back-end",
+  "version": "1.0.0",
+  "description": "Back End for Galvanize Movie Crud Project",
+  "main": "index.js",
+  "scripts": {
+    "knex": "knex",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chriskistner/chrisk-movie-crud-back-end.git"
+  },
+  "keywords": [],
+  "author": "Chris Kistner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chriskistner/chrisk-movie-crud-back-end/issues"
+  },
+  "homepage": "https://github.com/chriskistner/chrisk-movie-crud-back-end#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "knex": "^0.15.2",
+    "pg": "^7.6.1"
+  }
+}
