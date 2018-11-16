@@ -14,8 +14,8 @@ app.use(cors());
 const movieRoutes = require('./src/routes/movies-routes');
 app.use('/', movieRoutes);
 
-// const actorRoutes = require('./src/routes/actors-routes');
-// app.use('/', actorRoutes);
+const actorRoutes = require('./src/routes/actors-routes');
+app.use('/', actorRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err)
