@@ -33,7 +33,40 @@ function getAllActors() {
       })
   };
 
+  function addActor(first_name, last_name ) {
+    return knex('actors')
+    .insert({ title, released, director, rating, poster})
+    .returning('*')
+    .then(function([data]){
+        return data
+    })
+};
+
+  function deleteActor(id) {
+    return knex('actors')
+    .del()
+    .where('actors.id', id)
+    .returning('*')
+    .then(function([data]){
+      delete data.id
+      return data
+    })
+  };
+
+  function updateActor(id, first_name, last_name) {
+    return knex('actors')
+    .update({first_name, last_name})
+    .where('actors.id', id)
+    .returning('*')
+    .then(function([data]){
+      return data
+    })
+  };
+
   module.exports = {
       getAllActors,
       getActor,
+      deleteActor,
+      addActor,
+      updateActor
   }

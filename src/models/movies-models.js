@@ -41,10 +41,33 @@ const knex = require('../../db');
       .then(function([data]){
           return data
       })
+  };
+
+  function deleteMovie(id) {
+    return knex('movies')
+    .del()
+    .where('movies.id', id)
+    .returning('*')
+    .then(function([data]){
+      delete data.id
+      return data
+    })
+  };
+
+  function updateMovie(id, title, released, director, rating, poster) {
+    return knex('movies')
+    .update({title, released, director, rating, poster})
+    .where('movies.id', id)
+    .returning('*')
+    .then(function([data]){
+      return data
+    })
   }
 
   module.exports = {
       getAllMovies,
       getMovie,
-      addMovie
+      addMovie,
+      deleteMovie,
+      updateMovie,
   }
