@@ -48,11 +48,22 @@ function updateActor (req, res, next) {
     });
 };
 
+function addMovieToActor (req, res, next) {
+    const actorID = req.params.id;
+    const { movies }  = req.body;
+    const promises = movies.map(film => {
+        return model.addMovieToActor(actorID, film)
+    })
+    return Promise.all(promises).then(function(result){
+        res.status(201).send(result)
+    })
+}
 
 module.exports = {
     allActors,
     getActor,
     deleteActor,
     newActor,
-    updateActor
+    updateActor,
+    addMovieToActor
 }

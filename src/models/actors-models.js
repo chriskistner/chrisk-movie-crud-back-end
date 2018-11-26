@@ -35,7 +35,7 @@ function getAllActors() {
 
   function addActor(first_name, last_name ) {
     return knex('actors')
-    .insert({ title, released, director, rating, poster})
+    .insert({ first_name, last_name})
     .returning('*')
     .then(function([data]){
         return data
@@ -63,10 +63,31 @@ function getAllActors() {
     })
   };
 
+  function addMovieToActor(actorID, movieID ) {
+    return knex('actors')
+    .where('actors.id', actorID)
+    .then(function(peoples){
+      if(peoples.length === 0)
+        throw {status: 400, message: "Actors does not exist"}
+      
+      return knex('movies')
+      .where('movies.id', movieID)
+    })
+    .then(function(films){
+      if(films.length === 0)
+        throw {status: 400, message: "Movie does not exist"}
+
+      return knex('movies_actors')
+      .insert({movie_id: movieID, actor_id: actorID})
+      .returning('*')
+    })
+  };  
+  
   module.exports = {
       getAllActors,
       getActor,
       deleteActor,
       addActor,
-      updateActor
+      updateActor,
+      addMovieToActor
   }
