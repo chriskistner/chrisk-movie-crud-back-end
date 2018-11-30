@@ -1,8 +1,8 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('movies_actors', table => {
-    table.integer('movie_id').references('movies.id').notNullable()
-    table.integer('actor_id').references('actors.id').notNullable()
+    table.integer('movie_id').references('movies.id').notNullable().onDelete('CASCADE');
+    table.integer('actor_id').references('actors.id').notNullable().onDelete('CASCADE');
   })
 };
 

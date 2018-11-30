@@ -61,8 +61,8 @@ function addMovieToActor (req, res, next) {
 
 function deleteMovieToActor(req, res, next) {
     const actorID = req.params.id;
-    const {movies} = req.body;
-    const promises = movies.map(film => {
+    const data = req.body;
+    const promises = data.map(film => {
         return model.deleteMovieToActor(actorID, film)
     })
     return Promise.all(promises).then(function(result){

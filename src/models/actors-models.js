@@ -83,25 +83,14 @@ function getAllActors() {
     })
   }; 
   
-  function deleteMovieToActor(actorID, movieID) {
-    return knex('actors')
-    .where(actors.id, actorID)
-    .then(function(peoples){
-      if(peoples.length === 0)
-        throw {status: 400, message: "Actor does not exist"}
-        
-      return knex('movies')
-      .where('movies.id', movieID)
-
-    })
-    .then(function(films){
-      if(films.length === 0)
-        throw {status: 400, message: "Movie doe not exist"}
-
-      return knex('movies_actors')
-    }).then(function([data]){
-      delete data.id
-      return data
+  function deleteMovieToActor(actorID) {
+    return knex('movies_actors')
+    .del()
+    .where('actor_id', actorID)
+    .returning('*')
+    .then(function([data]){
+      console.log(data);
+      return data;
     })
   }
   
