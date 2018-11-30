@@ -68,7 +68,7 @@ function getAllActors() {
     .where('actors.id', actorID)
     .then(function(peoples){
       if(peoples.length === 0)
-        throw {status: 400, message: "Actors does not exist"}
+        throw {status: 400, message: "Actor does not exist"}
       
       return knex('movies')
       .where('movies.id', movieID)
@@ -81,7 +81,29 @@ function getAllActors() {
       .insert({movie_id: movieID, actor_id: actorID})
       .returning('*')
     })
-  };  
+  }; 
+  
+  function deleteMovieToActor(actorID, movieID) {
+    return knex('actors')
+    .where(actors.id, actorID)
+    .then(function(peoples){
+      if(peoples.length === 0)
+        throw {status: 400, message: "Actor does not exist"}
+        
+      return knex('movies')
+      .where('movies.id', movieID)
+
+    })
+    .then(function(films){
+      if(films.length === 0)
+        throw {status: 400, message: "Movie doe not exist"}
+
+      return knex('movies_actors')
+    }).then(function([data]){
+      delete data.id
+      return data
+    })
+  }
   
   module.exports = {
       getAllActors,
@@ -89,5 +111,6 @@ function getAllActors() {
       deleteActor,
       addActor,
       updateActor,
-      addMovieToActor
+      addMovieToActor,
+      deleteMovieToActor
   }

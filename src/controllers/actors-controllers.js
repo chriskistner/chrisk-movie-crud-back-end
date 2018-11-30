@@ -59,11 +59,23 @@ function addMovieToActor (req, res, next) {
     })
 }
 
+function deleteMovieToActor(req, res, next) {
+    const actorID = req.params.id;
+    const {movies} = req.body;
+    const promises = movies.map(film => {
+        return model.deleteMovieToActor(actorID, film)
+    })
+    return Promise.all(promises).then(function(result){
+        res.status(201).send(result)
+    })
+}
+
 module.exports = {
     allActors,
     getActor,
     deleteActor,
     newActor,
     updateActor,
-    addMovieToActor
+    addMovieToActor,
+    deleteMovieToActor
 }
