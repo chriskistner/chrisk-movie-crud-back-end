@@ -4,7 +4,7 @@
   "description": "Back End for Galvanize Movie Crud Project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "knex": "knex",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
