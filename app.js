@@ -8,7 +8,7 @@ const cors = require('cors');
 app.disable('x-powered-by');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {app.use(morgan('dev'))};
 app.use(cors());
 
 const movieRoutes = require('./src/routes/movies-routes');
